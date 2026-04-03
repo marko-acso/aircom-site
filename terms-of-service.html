@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — Aircom Ltd.</title>
+    <meta name="description" content="Terms for using the Aircom Ltd. website. Readable, plain language.">
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
+    <style>
+        :root {
+            --navy: #1A2A3A;
+            --navy-deep: #0F1A24;
+            --steel: #3A4A5A;
+            --warm: #6A7A8A;
+            --light: #E8ECF0;
+            --white: #FAFBFC;
+            --paper: #F4F5F7;
+            --accent: #2E6B8A;
+            --accent-hover: #245A74;
+            --radius: 8px;
+            --shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--navy);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ── Header ── */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(26, 42, 58, 0.97);
+            backdrop-filter: blur(10px);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .header-logo img { height: 36px; width: auto; }
+        .header-logo span {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .nav a {
+            color: var(--light);
+            font-size: 0.88rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--radius);
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+        /* ── Page hero ── */
+        .page-hero {
+            background: linear-gradient(150deg, var(--navy-deep), var(--steel));
+            color: var(--light);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            margin-top: 64px;
+            margin-bottom: 0;
+        }
+        .page-hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .page-hero p {
+            font-size: 0.95rem;
+            opacity: 0.75;
+        }
+
+        /* ── Content ── */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .last-updated {
+            font-size: 0.82rem;
+            color: var(--warm);
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light);
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 2.5rem 0 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        p { margin-bottom: 1rem; font-size: 0.97rem; }
+
+        ul {
+            margin: 0.5rem 0 1rem 1.5rem;
+            font-size: 0.97rem;
+        }
+        ul li { margin-bottom: 0.4rem; }
+
+        .highlight-box {
+            background: var(--paper);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.25rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+
+        .section-card {
+            background: var(--paper);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.95rem;
+        }
+        .section-card p { margin-bottom: 0.5rem; }
+        .section-card p:last-child { margin-bottom: 0; }
+
+        .contact-block {
+            background: var(--navy);
+            color: var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.92rem;
+        }
+        .contact-block a { color: var(--light); text-decoration: underline; }
+        .contact-block a:hover { color: #fff; }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--navy-deep);
+            color: var(--warm);
+            padding: 2rem;
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .footer-bottom a { color: var(--warm); }
+        .footer-bottom a:hover { color: var(--light); }
+
+        @media (max-width: 600px) {
+            .page-hero h1 { font-size: 1.6rem; }
+            .content { padding: 2rem 1.25rem 4rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <a href="/" class="header-logo">
+        <img src="assets/img/logo.png" alt="Aircom logo">
+        <span>AIRCOM</span>
+    </a>
+    <nav class="nav">
+        <a href="/">Home</a>
+    </nav>
+</header>
+
+<!-- Page Hero -->
+<div class="page-hero">
+    <h1>Terms of Service</h1>
+    <p>Straightforward terms for using this website. Written to be read, not filed away.</p>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+    <p class="last-updated">Last updated: April 2026 &nbsp;&middot;&nbsp; Aircom Ltd. &middot; EIK 200538540</p>
+
+    <div class="highlight-box">
+        By using aircom.bg you agree to these terms. They are intentionally short. If something is unclear, just ask us at <a href="mailto:info@aircom.bg" style="color:var(--accent);">info@aircom.bg</a>.
+    </div>
+
+    <h2>Who we are</h2>
+    <p>
+        Aircom Ltd. is a Bulgarian company (EIK 200538540) specialising in aviation engineering and manufacturing, registered at ul. Okolovrasten pat 251, 621 vh.1 et.3, BG-1715 Sofia, Bulgaria. We operate the website <strong>aircom.bg</strong>.
+    </p>
+
+    <h2>Using this website</h2>
+    <p>You are welcome to browse, share links to, and reference this site for personal or professional informational purposes. A few things we ask you not to do:</p>
+    <ul>
+        <li>Copy or reproduce our written content, images, or technical drawings without written permission</li>
+        <li>Use automated tools to scrape or index this site beyond what a standard search engine crawler does</li>
+        <li>Attempt to interfere with the site's operation or security</li>
+        <li>Submit false or misleading information through any form on the site</li>
+    </ul>
+    <p>If you are unsure whether something is permitted, write to us — we are generally happy to say yes.</p>
+
+    <h2>Intellectual property</h2>
+    <div class="section-card">
+        <p><strong>Site content owned by Aircom Ltd.</strong> — All text, graphics, technical diagrams, 3D renders, and other content produced by us is the property of Aircom Ltd. and protected under applicable Bulgarian and EU copyright law. You may not reproduce it commercially without our explicit written consent.</p>
+        <p><strong>Uploaded images</strong> — Photos and images submitted by users through our Image Use Agreement remain the property of the original uploader. By submitting an image, you grant Aircom Ltd. a non-exclusive, royalty-free licence to display that image on this website and related promotional materials, as described in the Agreement. You may withdraw this permission at any time by contacting us.</p>
+        <p><strong>Third-party assets</strong> — Where we use fonts, icons, or libraries under open licences, those remain the property of their respective owners.</p>
+    </div>
+
+    <h2>Accuracy of information</h2>
+    <p>
+        We do our best to keep the information on this site accurate and up to date — technical specifications, pricing, availability, and lead times can change. Please contact us directly to confirm details before making any business decision based on information found here.
+    </p>
+
+    <h2>Links to other websites</h2>
+    <p>
+        This site may link to external websites for reference. We are not responsible for the content or privacy practices of those sites and the links do not imply endorsement.
+    </p>
+
+    <h2>Limitation of liability</h2>
+    <p>
+        Aircom Ltd. provides this website in good faith, but we cannot guarantee that it will always be available, error-free, or free from security issues. To the extent permitted by Bulgarian law:
+    </p>
+    <ul>
+        <li>We are not liable for any indirect or consequential loss arising from your use of, or inability to use, this site</li>
+        <li>We are not liable for decisions made based on information found on this site without direct confirmation from us</li>
+        <li>Our total liability for any direct claim is limited to the amount paid to us in the transaction giving rise to that claim (if any)</li>
+    </ul>
+    <p>
+        Nothing in these terms removes or limits liability for fraud, death, or personal injury caused by our negligence, which cannot be excluded under Bulgarian law.
+    </p>
+
+    <h2>Governing law</h2>
+    <p>
+        These terms are governed by the laws of the Republic of Bulgaria. Any disputes will be subject to the jurisdiction of the competent courts in Sofia, Bulgaria. If you are accessing this site from another country, your local consumer protection laws may also apply.
+    </p>
+
+    <h2>Changes to these terms</h2>
+    <p>
+        We may update these terms from time to time. When we do, we will update the date at the top. Continued use of the site after an update means you accept the revised terms. If a change is significant, we will make it clear on the site.
+    </p>
+
+    <h2>Contact</h2>
+    <p>These terms are meant to be fair and understandable. If something feels off or you have a question, talk to us directly before anything else.</p>
+
+    <div class="contact-block">
+        <strong style="color:#fff; display:block; margin-bottom:0.75rem;">Aircom Ltd.</strong>
+        ul. Okolovrasten pat 251, 621 vh.1 et.3, BG-1715 Sofia, Bulgaria<br>
+        Email: <a href="mailto:info@aircom.bg">info@aircom.bg</a><br>
+        Phone: <a href="tel:+359877123950">+359 877 123 950</a><br>
+        EIK: 200538540
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-bottom">
+        <span>&copy; 2009&ndash;2026 Aircom Ltd. &middot; Sofia, Bulgaria</span>
+        <span>
+            <a href="/privacy-policy.html">Privacy</a> &middot;
+            <a href="/terms-of-service.html">Terms</a> &middot;
+            Designed by <a href="https://acsoconsulting.com" target="_blank" rel="noopener">Acsoconsulting.com</a>
+        </span>
+    </div>
+</footer>
+
+</body>
+</html>

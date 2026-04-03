@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Work — Aircom</title>
+    <style>
+        :root {
+            --navy: #1A2A3A;
+            --steel: #3A4A5A;
+            --warm: #6A7A8A;
+            --light: #E8ECF0;
+            --white: #FAFBFC;
+            --accent: #2E6B8A;
+            --accent-hover: #245A74;
+            --success: #2A7A4A;
+            --error: #8A3A2E;
+            --radius: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--navy);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-logo {
+            color: var(--white);
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+        .header-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 2rem;
+            transition: color 0.2s;
+        }
+        .header-nav a:hover { color: #fff; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 720px;
+            margin: -2rem auto 3rem;
+            padding: 0 1.5rem;
+        }
+
+        /* Card */
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        /* Form */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--steel);
+            margin-bottom: 0.35rem;
+        }
+        .form-group label .required {
+            color: var(--error);
+            margin-left: 2px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid var(--light);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--navy);
+            transition: border-color 0.2s;
+            background: var(--white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        /* Drop zone */
+        .dropzone {
+            border: 2px dashed var(--light);
+            border-radius: var(--radius);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        .dropzone:hover,
+        .dropzone.dragover {
+            border-color: var(--accent);
+            background: rgba(46, 107, 138, 0.03);
+        }
+        .dropzone-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            opacity: 0.4;
+        }
+        .dropzone-text {
+            font-size: 0.95rem;
+            color: var(--warm);
+        }
+        .dropzone-text strong {
+            color: var(--accent);
+            cursor: pointer;
+        }
+        .dropzone-hint {
+            font-size: 0.8rem;
+            color: var(--warm);
+            margin-top: 0.5rem;
+        }
+
+        /* File list */
+        .file-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.8rem;
+            background: var(--white);
+            border: 1px solid var(--light);
+            border-radius: var(--radius);
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+        }
+        .file-item-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--steel);
+            overflow: hidden;
+        }
+        .file-item-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-item-size {
+            color: var(--warm);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .file-remove {
+            background: none;
+            border: none;
+            color: var(--warm);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0 0.3rem;
+            transition: color 0.2s;
+        }
+        .file-remove:hover { color: var(--error); }
+
+        /* Terms */
+        .terms-box {
+            background: var(--white);
+            border: 1px solid var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            max-height: 280px;
+            overflow-y: auto;
+            margin-bottom: 1.25rem;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--steel);
+        }
+        .terms-box h3 {
+            font-size: 0.95rem;
+            color: var(--navy);
+            margin: 1rem 0 0.4rem;
+        }
+        .terms-box h3:first-child { margin-top: 0; }
+        .terms-box ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0;
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.25rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: var(--steel);
+            cursor: pointer;
+        }
+
+        /* Button */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: var(--accent-hover); }
+        .btn-submit:disabled {
+            background: var(--warm);
+            cursor: not-allowed;
+        }
+
+        /* Messages */
+        .msg {
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .msg.success {
+            background: #E8F5E9;
+            color: var(--success);
+            border: 1px solid #C8E6C9;
+            display: block;
+        }
+        .msg.error {
+            background: #FFEBEE;
+            color: var(--error);
+            border: 1px solid #FFCDD2;
+            display: block;
+        }
+
+        /* Progress */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--light);
+            border-radius: 2px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            display: none;
+        }
+        .progress-bar.active { display: block; }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy);
+            color: var(--warm);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .footer a {
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        /* Honeypot */
+        .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .hero { padding: 3rem 1.5rem 2.5rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .card { padding: 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .header-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="header-logo">AIRCOM</a>
+    <nav class="header-nav">
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Share Your Work With Us</h1>
+    <p>If you'd like your images or technical drawings featured on our site, this is the place. Upload your files, review the terms, and we'll take it from there.</p>
+</section>
+
+<div class="container">
+
+    <div id="statusMsg" class="msg"></div>
+
+    <form id="uploadForm" novalidate>
+
+        <!-- Anti-bot: honeypot -->
+        <div class="hp-field">
+            <label for="website">Website</label>
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+        </div>
+        <!-- Anti-bot: timestamp -->
+        <input type="hidden" name="form_loaded" id="formLoaded">
+
+        <!-- Section 1: Your Details -->
+        <div class="card">
+            <h2>Your Details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="full_name" required placeholder="e.g. John Miller">
+                </div>
+                <div class="form-group">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" name="email" required placeholder="e.g. john@yourcompany.com">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Company Name <span class="required">*</span></label>
+                    <input type="text" name="company" required placeholder="e.g. Your Company Ltd.">
+                </div>
+                <div class="form-group">
+                    <label>Registration Number (EIK / VAT BG) <span class="required">*</span></label>
+                    <input type="text" name="reg_number" required placeholder="e.g. BG200538540">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Brief description of the work you're sharing</label>
+                <textarea name="description" placeholder="e.g. Photos of CNC components manufactured in our workshop, March 2026"></textarea>
+            </div>
+        </div>
+
+        <!-- Section 2: Upload Files -->
+        <div class="card">
+            <h2>Upload Files</h2>
+            <div class="dropzone" id="dropzone">
+                <div class="dropzone-icon">&#128206;</div>
+                <div class="dropzone-text">Drag files here or <strong>browse</strong></div>
+                <div class="dropzone-hint">JPG, PNG, WEBP, PDF — max 10 MB per file</div>
+            </div>
+            <input type="file" id="fileInput" multiple accept=".jpg,.jpeg,.png,.webp,.pdf" style="display:none">
+            <ul class="file-list" id="fileList"></ul>
+        </div>
+
+        <!-- Section 3: Terms -->
+        <div class="card">
+            <h2>Image Use Agreement</h2>
+            <div class="terms-box">
+                <h3>What This Agreement Covers</h3>
+                <p>By uploading images or technical drawings through this form, you grant Aircom Ltd. (EIK: 200538540, Sofia, Bulgaria) a non-exclusive, royalty-free license to display the uploaded materials on the aircom.bg website and related promotional materials.</p>
+
+                <h3>What This Means</h3>
+                <ul>
+                    <li><strong>You keep full ownership.</strong> Your images remain yours. This agreement only grants Aircom the right to display them.</li>
+                    <li><strong>Non-exclusive.</strong> You are free to use, share, or license your images anywhere else.</li>
+                    <li><strong>Web display and promotion only.</strong> We will use your images on our website and marketing materials. We will not sell them or transfer them to third parties.</li>
+                    <li><strong>Attribution.</strong> If you'd like to be credited, let us know in the description field. We're happy to include your company name alongside your work.</li>
+                </ul>
+
+                <h3>Your Rights</h3>
+                <ul>
+                    <li><strong>You can withdraw consent at any time.</strong> Send an email to <a href="mailto:info@aircom.bg">info@aircom.bg</a> and we will remove your images within 5 business days.</li>
+                    <li><strong>You confirm</strong> that you own the images or have authorization to share them, and that they do not infringe on any third-party rights.</li>
+                    <li><strong>You confirm</strong> that the images do not contain confidential technical data that should not be publicly displayed.</li>
+                </ul>
+
+                <h3>How We Handle Your Data</h3>
+                <ul>
+                    <li>Your contact details (name, email, company, registration number) are stored securely and used only for communication related to the uploaded materials.</li>
+                    <li>Uploaded files are stored on our server and reviewed manually before any public use.</li>
+                    <li>We do not share your personal data with third parties.</li>
+                    <li>You may request deletion of your data at any time by contacting <a href="mailto:info@aircom.bg">info@aircom.bg</a>.</li>
+                </ul>
+
+                <h3>Governing Law</h3>
+                <p>This agreement is governed by the laws of the Republic of Bulgaria.</p>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="agreeTerms" name="agree_terms" required>
+                <label for="agreeTerms">I have read and agree to the Image Use Agreement above. I confirm that I have the right to share these files.</label>
+            </div>
+
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Share Files</button>
+        </div>
+
+    </form>
+</div>
+
+<footer class="footer">
+    &copy; 2009&ndash;2026 Aircom Ltd. &middot; Sofia, Bulgaria &middot; <a href="mailto:info@aircom.bg">info@aircom.bg</a><br>
+    <span style="margin-top:0.3rem;display:inline-block;">Designed by <a href="https://acsoconsulting.com">Acsoconsulting.com</a></span>
+</footer>
+
+<script>
+(function() {
+    // Anti-bot: record load timestamp
+    document.getElementById('formLoaded').value = Date.now();
+
+    const form = document.getElementById('uploadForm');
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+    const statusMsg = document.getElementById('statusMsg');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const submitBtn = document.getElementById('submitBtn');
+
+    const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
+    const ALLOWED = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
+    let files = [];
+
+    // Dropzone events
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+    });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        addFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', () => {
+        addFiles(fileInput.files);
+        fileInput.value = '';
+    });
+
+    function addFiles(newFiles) {
+        for (const f of newFiles) {
+            if (!ALLOWED.includes(f.type)) {
+                showMsg('error', `"${f.name}" is not a supported format. Please use JPG, PNG, WEBP, or PDF.`);
+                continue;
+            }
+            if (f.size > MAX_SIZE) {
+                showMsg('error', `"${f.name}" exceeds the 10 MB limit.`);
+                continue;
+            }
+            if (files.some(ef => ef.name === f.name && ef.size === f.size)) continue;
+            files.push(f);
+        }
+        renderFiles();
+    }
+
+    function renderFiles() {
+        fileList.innerHTML = '';
+        files.forEach((f, i) => {
+            const li = document.createElement('li');
+            li.className = 'file-item';
+            const sizeMB = (f.size / 1024 / 1024).toFixed(1);
+            li.innerHTML = `
+                <div class="file-item-info">
+                    <span class="file-item-name">${escHtml(f.name)}</span>
+                    <span class="file-item-size">${sizeMB} MB</span>
+                </div>
+                <button type="button" class="file-remove" data-idx="${i}">&times;</button>
+            `;
+            fileList.appendChild(li);
+        });
+        fileList.querySelectorAll('.file-remove').forEach(btn => {
+            btn.addEventListener('click', () => {
+                files.splice(parseInt(btn.dataset.idx), 1);
+                renderFiles();
+            });
+        });
+    }
+
+    // Form submit
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        statusMsg.className = 'msg';
+        statusMsg.style.display = 'none';
+
+        // Honeypot check
+        if (document.getElementById('website').value) return;
+
+        // Time check (must be at least 3 seconds since page load)
+        const elapsed = Date.now() - parseInt(document.getElementById('formLoaded').value);
+        if (elapsed < 3000) return;
+
+        // Validate required fields
+        const name = form.full_name.value.trim();
+        const email = form.email.value.trim();
+        const company = form.company.value.trim();
+        const regNum = form.reg_number.value.trim();
+        const agreed = form.agree_terms.checked;
+
+        if (!name || !email || !company || !regNum) {
+            showMsg('error', 'Please fill in all required fields.');
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showMsg('error', 'Please enter a valid email address.');
+            return;
+        }
+        if (!agreed) {
+            showMsg('error', 'Please read and accept the Image Use Agreement to continue.');
+            return;
+        }
+        if (files.length === 0) {
+            showMsg('error', 'Please select at least one file to upload.');
+            return;
+        }
+
+        // Build FormData
+        const fd = new FormData();
+        fd.append('full_name', name);
+        fd.append('email', email);
+        fd.append('company', company);
+        fd.append('reg_number', regNum);
+        fd.append('description', form.description.value.trim());
+        fd.append('agree_terms', '1');
+        fd.append('form_loaded', document.getElementById('formLoaded').value);
+        fd.append('website', ''); // honeypot
+        files.forEach(f => fd.append('files[]', f));
+
+        // Submit
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        progressBar.classList.add('active');
+        progressFill.style.width = '0%';
+
+        try {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload-handler.php', true);
+
+            xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                    progressFill.style.width = Math.round((e.loaded / e.total) * 100) + '%';
+                }
+            });
+
+            xhr.onload = function() {
+                progressBar.classList.remove('active');
+                if (xhr.status === 200) {
+                    try {
+                        const resp = JSON.parse(xhr.responseText);
+                        if (resp.success) {
+                            form.reset();
+                            files = [];
+                            renderFiles();
+                            showMsg('success', 'Thank you. Your files have been received. We\'ll review them and be in touch.');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            showMsg('error', resp.message || 'Something went wrong. Please try again or email us directly at info@aircom.bg.');
+                        }
+                    } catch {
+                        showMsg('error', 'Something went wrong. Please try again or email us directly at info@aircom.bg.');
+                    }
+                } else {
+                    showMsg('error', 'Something went wrong. Please try again or email us directly at info@aircom.bg.');
+                }
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Share Files';
+            };
+
+            xhr.onerror = function() {
+                progressBar.classList.remove('active');
+                showMsg('error', 'Connection issue. Please try again or email us directly at info@aircom.bg.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Share Files';
+            };
+
+            xhr.send(fd);
+        } catch {
+            progressBar.classList.remove('active');
+            showMsg('error', 'Something went wrong. Please try again or email us directly at info@aircom.bg.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Share Files';
+        }
+    });
+
+    function showMsg(type, text) {
+        statusMsg.className = 'msg ' + type;
+        statusMsg.textContent = text;
+        statusMsg.style.display = 'block';
+    }
+
+    function escHtml(s) {
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+    }
+})();
+</script>
+
+</body>
+</html>

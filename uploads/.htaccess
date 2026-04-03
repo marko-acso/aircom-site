@@ -1,0 +1,10 @@
+# Prevent directory listing and direct access to uploads
+Options -Indexes
+<FilesMatch "\.(php|html|htm|js)$">
+    Deny from all
+</FilesMatch>
+
+# Block direct access to consent log
+<Files "consent-log.csv">
+    Deny from all
+</Files>

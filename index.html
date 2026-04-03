@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aircom — Aviation Engineering &amp; Manufacturing | Sofia, Bulgaria</title>
+    <meta name="description" content="Aircom Ltd. — Aviation engineering, ultralight aircraft kits, 3D CAD design, CNC manufacturing and custom fabrication. Sofia, Bulgaria. Since 2009.">
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
+    <style>
+        :root {
+            --navy: #1A2A3A;
+            --navy-deep: #0F1A24;
+            --steel: #3A4A5A;
+            --warm: #6A7A8A;
+            --light: #E8ECF0;
+            --white: #FAFBFC;
+            --paper: #F4F5F7;
+            --accent: #2E6B8A;
+            --accent-hover: #245A74;
+            --accent-soft: rgba(46, 107, 138, 0.08);
+            --radius: 8px;
+            --shadow: 0 2px 20px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.10);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── Header ─────────────────────────────────────────── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(26, 42, 58, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.2); }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .header-logo img {
+            height: 36px;
+            width: auto;
+        }
+        .header-logo span {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .nav { display: flex; align-items: center; gap: 0; }
+        .nav a {
+            color: var(--light);
+            font-size: 0.88rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--radius);
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--light);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ── Hero ───────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 40%, var(--steel) 100%);
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('assets/img/about.jpg') center/cover no-repeat;
+            opacity: 0.15;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            color: var(--light);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .hero h1 {
+            color: #fff;
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .hero h1 strong { font-weight: 600; }
+        .hero-sub {
+            color: var(--light);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 540px;
+            margin: 0 auto 2rem;
+        }
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+        .hero-meta-item {
+            text-align: center;
+        }
+        .hero-meta-item .num {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        .hero-meta-item .label {
+            color: var(--warm);
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        /* ── Section base ───────────────────────────────────── */
+        .section {
+            padding: 5rem 2rem;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+            color: var(--navy);
+        }
+        .section-title strong { font-weight: 600; }
+        .section-desc {
+            color: var(--warm);
+            font-size: 1rem;
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+        .bg-alt { background: var(--paper); }
+
+        /* ── Services ───────────────────────────────────────── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--light);
+        }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-soft);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+        }
+        .service-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--warm);
+            line-height: 1.65;
+        }
+
+        /* ── AcroCruiser feature ────────────────────────────── */
+        .acro-section {
+            background: var(--navy-deep);
+            color: #fff;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .acro-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .acro-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .acro-images img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .acro-images img:first-child {
+            grid-column: span 2;
+            height: 240px;
+        }
+        .acro-text .section-label { color: rgba(255,255,255,0.5); }
+        .acro-text h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .acro-text h2 strong { font-weight: 600; }
+        .acro-text p {
+            color: var(--light);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+        .acro-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--light);
+            font-size: 0.9rem;
+            padding: 0.6rem 1.4rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .acro-link:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* ── Portfolio ──────────────────────────────────────── */
+        .portfolio-filters {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: none;
+            border: 1.5px solid var(--light);
+            color: var(--warm);
+            padding: 0.45rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .portfolio-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .portfolio-item:hover img { transform: scale(1.05); }
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 50%, rgba(15, 26, 36, 0.85));
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay span {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ── Workshop capabilities ──────────────────────────── */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .cap-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .cap-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-soft);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .cap-item h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+        .cap-item p {
+            font-size: 0.85rem;
+            color: var(--warm);
+            line-height: 1.6;
+        }
+
+        /* ── Upload CTA ─────────────────────────────────────── */
+        .upload-cta {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--accent-soft);
+        }
+        .upload-cta h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+        .upload-cta p {
+            color: var(--warm);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .upload-cta .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .upload-cta .btn:hover { background: var(--accent-hover); }
+
+        /* ── Contact ────────────────────────────────────────── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1.25rem;
+        }
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-soft);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .contact-item-text .label {
+            font-size: 0.75rem;
+            color: var(--warm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .contact-item-text .value {
+            font-size: 0.95rem;
+            color: var(--navy);
+            margin-top: 0.1rem;
+        }
+        .contact-item-text a { color: var(--accent); }
+        .contact-item-text a:hover { text-decoration: underline; }
+
+        .contact-form {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        .contact-form h3 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .contact-form .form-group { margin-bottom: 1rem; }
+        .contact-form label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--warm);
+            margin-bottom: 0.3rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.65rem 0.85rem;
+            border: 1.5px solid var(--light);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-family: inherit;
+            color: var(--navy);
+            transition: border-color 0.2s;
+            background: var(--white);
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .contact-form textarea { min-height: 100px; resize: vertical; }
+        .contact-form .btn-send {
+            display: inline-flex;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .contact-form .btn-send:hover { background: var(--accent-hover); }
+
+        /* ── Map ────────────────────────────────────────────── */
+        .map-wrap {
+            margin-top: 1.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--light);
+        }
+        .map-wrap iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+        }
+
+        /* ── Footer ─────────────────────────────────────────── */
+        .footer {
+            background: var(--navy-deep);
+            color: var(--warm);
+            padding: 3rem 2rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+        }
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-top: 0.75rem;
+            max-width: 320px;
+        }
+        .footer h4 {
+            color: var(--light);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 0.5rem; }
+        .footer ul a {
+            color: var(--warm);
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer ul a:hover { color: var(--light); }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+        }
+        .footer-bottom a { color: var(--warm); }
+        .footer-bottom a:hover { color: var(--light); }
+
+        /* ── Lightbox ───────────────────────────────────────── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(15, 26, 36, 0.92);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: pointer;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 60px rgba(0,0,0,0.4);
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            font-size: 0.9rem;
+            background: rgba(15, 26, 36, 0.7);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: var(--light);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ── Mobile ─────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .acro-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .cap-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+        @media (max-width: 600px) {
+            .nav {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            }
+            .nav.open { display: flex; }
+            .nav a { padding: 0.75rem 1rem; }
+            .hamburger { display: flex; }
+            .hero { min-height: 70vh; padding: 5rem 1.5rem 3rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero-meta { gap: 1.5rem; }
+            .section { padding: 3rem 1.5rem; }
+            .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .acro-images img:first-child { height: 180px; }
+            .acro-images img { height: 120px; }
+            .contact-form .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header" id="header">
+    <a href="#" class="header-logo">
+        <img src="assets/img/logo.png" alt="Aircom logo">
+        <span>AIRCOM</span>
+    </a>
+    <nav class="nav" id="nav">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#acrocruiser">AcroCruiser</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#workshop">Workshop</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Sofia, Bulgaria</div>
+        <h1>Aviation Engineering<br>&amp; <strong>Manufacturing</strong></h1>
+        <p class="hero-sub">Since 2009, we design and build aircraft, precision components, and custom engineering solutions. The work speaks for itself.</p>
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <div class="num">17</div>
+                <div class="label">Years</div>
+            </div>
+            <div class="hero-meta-item">
+                <div class="num">F11AC</div>
+                <div class="label">Flagship Aircraft</div>
+            </div>
+            <div class="hero-meta-item">
+                <div class="num">6</div>
+                <div class="label">Disciplines</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+    <div class="section-inner">
+        <div class="section-label">About</div>
+        <h2 class="section-title">An engineering workshop in Sofia</h2>
+        <p class="section-desc">Aircom started as an aviation project and grew into a full-capability engineering workshop. We design, prototype, and manufacture — from aircraft structures to CNC-machined components to custom trailers. Every project gets the same precision.</p>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="section bg-alt" id="services">
+    <div class="section-inner">
+        <div class="section-label">What we do</div>
+        <h2 class="section-title">Three areas of <strong>focus</strong></h2>
+        <p class="section-desc">Each one draws on the same engineering discipline. The aircraft work made us precise; we bring that standard to everything.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">&#9992;</div>
+                <h3>Aviation Engineering</h3>
+                <p>Design and construction of ultralight aircraft. Structural analysis, aerodynamics, flight testing. Our AcroCruiser F11AC is the result of years of iterative development.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">&#9649;</div>
+                <h3>3D CAD &amp; Design</h3>
+                <p>Technical drawings, 3D modelling, and CAM programming for CNC production. From concept to manufacturing-ready files.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">&#9881;</div>
+                <h3>Custom Manufacturing</h3>
+                <p>CNC milling, cutting, bending, engraving. Composite, metal, and wood structures. Motorcycle and custom trailers. If it can be engineered, we can build it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AcroCruiser -->
+<section class="acro-section" id="acrocruiser">
+    <div class="acro-inner">
+        <div class="acro-images">
+            <img src="assets/img/projectimg/plane (1).jpg" alt="AcroCruiser F11AC in flight" loading="lazy">
+            <img src="assets/img/projectimg/plane (5).jpg" alt="AcroCruiser F11AC cockpit detail" loading="lazy">
+            <img src="assets/img/projectimg/plane (9).jpg" alt="AcroCruiser F11AC wing assembly" loading="lazy">
+        </div>
+        <div class="acro-text">
+            <div class="section-label">Flagship</div>
+            <h2>The <strong>AcroCruiser F11AC</strong></h2>
+            <p>A two-seat ultralight kit aircraft designed and built entirely in our workshop. Tandem seating, aerobatic-capable, with a FastBuild option that brings assembly down to 400-600 hours.</p>
+            <p>The F11AC is available as a complete kit or individual components. Everything from the composite fuselage to the HOTAS control system is engineered in-house.</p>
+            <a href="https://acrocruiser.com" class="acro-link" target="_blank" rel="noopener">
+                See the full project &rarr;
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio -->
+<section class="section" id="portfolio">
+    <div class="section-inner">
+        <div class="section-label">Our work</div>
+        <h2 class="section-title">Selected <strong>projects</strong></h2>
+        <p class="section-desc">A look at what comes out of the workshop.</p>
+
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="aircraft">Aircraft</button>
+            <button class="filter-btn" data-filter="3d">3D Design</button>
+            <button class="filter-btn" data-filter="workshop">Workshop</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            <div class="portfolio-item" data-cat="aircraft" data-caption="AcroCruiser F11AC — fuselage assembly">
+                <img src="assets/img/projectimg/plane (2).jpg" alt="AcroCruiser fuselage assembly" loading="lazy">
+                <div class="portfolio-overlay"><span>Fuselage Assembly</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="aircraft" data-caption="AcroCruiser F11AC — wing structure">
+                <img src="assets/img/projectimg/plane (3).jpg" alt="AcroCruiser wing structure" loading="lazy">
+                <div class="portfolio-overlay"><span>Wing Structure</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="aircraft" data-caption="AcroCruiser F11AC — instrument panel">
+                <img src="assets/img/projectimg/plane (6).jpg" alt="AcroCruiser instrument panel" loading="lazy">
+                <div class="portfolio-overlay"><span>Instrument Panel</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="aircraft" data-caption="AcroCruiser F11AC — engine integration">
+                <img src="assets/img/projectimg/plane (10).jpg" alt="AcroCruiser engine integration" loading="lazy">
+                <div class="portfolio-overlay"><span>Engine Integration</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="3d" data-caption="3D CAD — technical rendering">
+                <img src="assets/img/projectimg/3d_images/image1.png" alt="3D CAD technical rendering" loading="lazy">
+                <div class="portfolio-overlay"><span>Technical Rendering</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="3d" data-caption="3D CAD — component design">
+                <img src="assets/img/projectimg/3d_images/image2.png" alt="3D CAD component design" loading="lazy">
+                <div class="portfolio-overlay"><span>Component Design</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="aircraft" data-caption="AcroCruiser F11AC — final assembly">
+                <img src="assets/img/projectimg/plane (14).jpg" alt="AcroCruiser final assembly" loading="lazy">
+                <div class="portfolio-overlay"><span>Final Assembly</span></div>
+            </div>
+            <div class="portfolio-item" data-cat="3d" data-caption="3D CAD — structural analysis">
+                <img src="assets/img/projectimg/3d_images/image3.png" alt="3D structural analysis" loading="lazy">
+                <div class="portfolio-overlay"><span>Structural Analysis</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Workshop Capabilities -->
+<section class="section bg-alt" id="workshop">
+    <div class="section-inner">
+        <div class="section-label">Workshop</div>
+        <h2 class="section-title">What the <strong>workshop</strong> can do</h2>
+        <p class="section-desc">The tools and techniques we use every day.</p>
+
+        <div class="cap-grid">
+            <div class="cap-item">
+                <div class="cap-icon">&#9881;</div>
+                <div>
+                    <h4>CNC Machining &amp; Automation</h4>
+                    <p>Custom CNC machine design, programming, and production. CAM-driven manufacturing for precision parts.</p>
+                </div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-icon">&#9998;</div>
+                <div>
+                    <h4>Cutting, Milling &amp; Turning</h4>
+                    <p>Metal and composite material processing. Bending, shaping, and finishing to specification.</p>
+                </div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-icon">&#8999;</div>
+                <div>
+                    <h4>Engraving</h4>
+                    <p>All material types. Instrument panels, plaques, technical labels, decorative work.</p>
+                </div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-icon">&#9670;</div>
+                <div>
+                    <h4>Composite &amp; Metal Structures</h4>
+                    <p>Carbon fibre, fibreglass, aluminium, steel. From aircraft fuselages to industrial shelving.</p>
+                </div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-icon">&#9708;</div>
+                <div>
+                    <h4>3D Design &amp; Prototyping</h4>
+                    <p>Full 3D CAD modelling, technical drawings, rapid prototyping. Concept to production-ready.</p>
+                </div>
+            </div>
+            <div class="cap-item">
+                <div class="cap-icon">&#9654;</div>
+                <div>
+                    <h4>Custom Trailers</h4>
+                    <p>Motorcycle trailers, dog transport trailers, and custom-built solutions to your specification.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Upload CTA -->
+<section class="upload-cta">
+    <h2>Working on something together?</h2>
+    <p>If you'd like your images or technical drawings featured on our site, you can share them here.</p>
+    <a href="/upload.html" class="btn">Share your work &rarr;</a>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+    <div class="section-inner">
+        <div class="section-label">Get in touch</div>
+        <h2 class="section-title">If you'd like to <strong>talk</strong></h2>
+        <p class="section-desc">About a project, a question, or just to say hello. We're here.</p>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">&#9993;</div>
+                    <div class="contact-item-text">
+                        <div class="label">Email</div>
+                        <div class="value"><a href="mailto:info@aircom.bg">info@aircom.bg</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">&#9742;</div>
+                    <div class="contact-item-text">
+                        <div class="label">Phone</div>
+                        <div class="value"><a href="tel:+359877123950">+359 877 123 950</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">&#9873;</div>
+                    <div class="contact-item-text">
+                        <div class="label">Address</div>
+                        <div class="value">ul. Okolovrasten pat 251<br>621, vh.1, et.3<br>BG-1715 Sofia, Bulgaria</div>
+                    </div>
+                </div>
+
+                <div class="map-wrap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2933.5!2d23.29!3d42.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDM5JzM2LjAiTiAyM8KwMTcnMjQuMCJF!5e0!3m2!1sen!2sbg!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Aircom location"></iframe>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="hp-field" style="position:absolute;left:-9999px;opacity:0;height:0;">
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </div>
+                <h3>Send us a message</h3>
+                <div id="contactMsg" class="msg" style="display:none;margin-bottom:1rem;padding:0.8rem 1rem;border-radius:8px;font-size:0.9rem;"></div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Your name</label>
+                        <input type="text" name="name" required placeholder="e.g. John Miller">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required placeholder="e.g. john@yourcompany.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject" required placeholder="e.g. CNC machining inquiry">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" required placeholder="Tell us about your project or question..."></textarea>
+                </div>
+                <button type="submit" class="btn-send" id="contactBtn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#" class="header-logo" style="margin-bottom:0.5rem">
+                <span style="color:#fff;font-size:1.1rem;font-weight:600;letter-spacing:1px;">AIRCOM</span>
+            </a>
+            <p>Aviation engineering, 3D design, and custom manufacturing. Sofia, Bulgaria. Since 2009.</p>
+        </div>
+        <div>
+            <h4>Navigate</h4>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#acrocruiser">AcroCruiser</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Services</h4>
+            <ul>
+                <li><a href="#services">Aviation Engineering</a></li>
+                <li><a href="#services">3D CAD Design</a></li>
+                <li><a href="#services">CNC Manufacturing</a></li>
+                <li><a href="#services">Engraving</a></li>
+                <li><a href="#services">Custom Trailers</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2009&ndash;2026 Aircom Ltd. &middot; Sofia, Bulgaria</span>
+        <span>
+            <a href="/privacy-policy.html">Privacy</a> &middot;
+            <a href="/terms-of-service.html">Terms</a> &middot;
+            Designed by <a href="https://acsoconsulting.com" target="_blank" rel="noopener">Acsoconsulting.com</a>
+        </span>
+    </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightboxImg">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<script>
+(function() {
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+
+    // Portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.portfolio-item');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            items.forEach(item => {
+                item.style.display = (f === 'all' || item.dataset.cat === f) ? '' : 'none';
+            });
+        });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCaption = document.getElementById('lightboxCaption');
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            lbImg.src = item.querySelector('img').src;
+            lbImg.alt = item.dataset.caption;
+            lbCaption.textContent = item.dataset.caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Contact form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('contactMsg');
+            const btn = document.getElementById('contactBtn');
+            if (contactForm.website.value) return;
+            const fd = new FormData(contactForm);
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            fetch('/contact-handler.php', { method: 'POST', body: fd })
+                .then(r => r.json())
+                .then(data => {
+                    msg.style.display = 'block';
+                    if (data.success) {
+                        msg.style.background = '#E8F5E9';
+                        msg.style.color = '#2A7A4A';
+                        msg.textContent = 'Thank you. Your message has been sent.';
+                        contactForm.reset();
+                    } else {
+                        msg.style.background = '#FFEBEE';
+                        msg.style.color = '#8A3A2E';
+                        msg.textContent = data.message || 'Something went wrong. Please email us at info@aircom.bg.';
+                    }
+                })
+                .catch(() => {
+                    msg.style.display = 'block';
+                    msg.style.background = '#FFEBEE';
+                    msg.style.color = '#8A3A2E';
+                    msg.textContent = 'Connection issue. Please email us directly at info@aircom.bg.';
+                })
+                .finally(() => { btn.disabled = false; btn.textContent = 'Send Message'; });
+        });
+    }
+})();
+</script>
+
+</body>
+</html>
