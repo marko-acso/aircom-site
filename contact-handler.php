@@ -19,9 +19,9 @@ if (!empty($_POST['website'])) {
 }
 
 // ── Collect & validate fields ───────────────────────────────────────────
-$name    = trim($_POST['name']    ?? '');
+$name    = str_replace(["\r", "\n", "\t"], '', trim($_POST['name']    ?? ''));
 $email   = trim($_POST['email']   ?? '');
-$subject = trim($_POST['subject'] ?? '');
+$subject = str_replace(["\r", "\n", "\t"], '', trim($_POST['subject'] ?? ''));
 $message = trim($_POST['message'] ?? '');
 
 $errors = [];

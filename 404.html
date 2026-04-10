@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found — Aircom</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        :root {
+            --navy: #1A2A3A;
+            --navy-deep: #0F1A24;
+            --steel: #3A4A5A;
+            --warm: #6A7A8A;
+            --light: #E8ECF0;
+            --white: #FAFBFC;
+            --accent: #2E6B8A;
+            --accent-hover: #245A74;
+            --radius: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--navy);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(26, 42, 58, 0.97);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+        }
+        .header-logo img { height: 36px; width: auto; }
+        .header-logo span {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--radius);
+            transition: color 0.2s, background 0.2s;
+        }
+        .nav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+        .content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .content h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+        }
+
+        .content h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .content p {
+            color: var(--warm);
+            font-size: 0.95rem;
+            max-width: 440px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .content a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .content a:hover { background: var(--accent-hover); }
+
+        .footer {
+            background: var(--navy-deep);
+            color: var(--warm);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.78rem;
+        }
+        .footer a { color: var(--warm); text-decoration: none; }
+        .footer a:hover { color: var(--light); }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="header-logo">
+        <img src="assets/img/logo.png" alt="Aircom logo">
+        <span>AIRCOM</span>
+    </a>
+    <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+</header>
+
+<main class="content">
+    <div>
+        <h1>404</h1>
+        <h2>This page doesn't exist</h2>
+        <p>The page you're looking for may have been moved or removed. No trouble — here's how to get back on track.</p>
+        <a href="/">Back to the homepage &rarr;</a>
+    </div>
+</main>
+
+<footer class="footer">
+    <span>&copy; 2009&ndash;2026 Aircom Ltd. &middot; Sofia, Bulgaria &middot; <a href="mailto:info@aircom.bg">info@aircom.bg</a></span>
+</footer>
+
+</body>
+</html>

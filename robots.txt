@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /uploads/
+Disallow: /contact-handler.php
+Disallow: /upload-handler.php
+
+Sitemap: https://aircom.bg/sitemap.xml
