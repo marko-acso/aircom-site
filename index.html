@@ -672,6 +672,51 @@
             .acro-images img { height: 120px; }
             .contact-form .form-row { grid-template-columns: 1fr; }
         }
+
+        /* ── Cookie Consent Banner ── */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: var(--navy);
+            color: var(--light);
+            padding: 1.25rem 2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.15);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .cookie-banner.visible { display: flex; }
+        .cookie-banner p { margin: 0; flex: 1 1 400px; }
+        .cookie-banner a { color: var(--accent); text-decoration: underline; }
+        .cookie-banner a:hover { color: #fff; }
+        .cookie-btns { display: flex; gap: 0.75rem; flex-shrink: 0; }
+        .cookie-btns button {
+            padding: 0.55rem 1.4rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .cookie-accept {
+            background: var(--accent);
+            color: #fff;
+        }
+        .cookie-accept:hover { background: var(--accent-hover); }
+        .cookie-reject {
+            background: transparent;
+            color: var(--light);
+            border: 1.5px solid var(--warm) !important;
+        }
+        .cookie-reject:hover { background: rgba(255,255,255,0.08); color: #fff; }
     </style>
 </head>
 <body>
@@ -1098,6 +1143,44 @@
                 })
                 .finally(() => { btn.disabled = false; btn.textContent = 'Send Message'; });
         });
+    }
+})();
+</script>
+
+<!-- Cookie Consent Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    <p>We use cookies to understand how visitors interact with our site. No advertising trackers.
+        <a href="/privacy-policy.html">Privacy Policy</a>
+    </p>
+    <div class="cookie-btns">
+        <button class="cookie-reject" id="cookieReject">Reject</button>
+        <button class="cookie-accept" id="cookieAccept">Accept</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var consent = localStorage.getItem('cookie_consent');
+    if (consent === 'accepted') {
+        loadClarity();
+    } else if (consent !== 'rejected') {
+        document.getElementById('cookieBanner').classList.add('visible');
+    }
+    document.getElementById('cookieAccept').addEventListener('click', function() {
+        localStorage.setItem('cookie_consent', 'accepted');
+        document.getElementById('cookieBanner').classList.remove('visible');
+        loadClarity();
+    });
+    document.getElementById('cookieReject').addEventListener('click', function() {
+        localStorage.setItem('cookie_consent', 'rejected');
+        document.getElementById('cookieBanner').classList.remove('visible');
+    });
+    function loadClarity() {
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "w9dpe335xi");
     }
 })();
 </script>
