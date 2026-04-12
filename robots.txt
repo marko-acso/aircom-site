@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /author/
+Disallow: /category/
+Disallow: /hello-world/
+Disallow: /sample-page/
+Disallow: /cookie-policy-eu/
+Disallow: /upload.html
+Disallow: /upload-handler.php
+Disallow: /contact-handler.php
+Disallow: /*?ref=
+Disallow: /*?s=
+
+Sitemap: https://aircom.bg/sitemap.xml

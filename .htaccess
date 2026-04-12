@@ -1,0 +1,51 @@
+# Force HTTPS + non-www
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,NE,R=301]
+
+# Canonicalize /index.html -> /
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [L,R=301]
+
+# Kill leftover WordPress URLs with 410 Gone
+RedirectMatch 410 ^/wp-admin(/.*)?$
+RedirectMatch 410 ^/wp-content(/.*)?$
+RedirectMatch 410 ^/wp-includes(/.*)?$
+RedirectMatch 410 ^/wp-json(/.*)?$
+RedirectMatch 410 ^/author(/.*)?$
+RedirectMatch 410 ^/category(/.*)?$
+RedirectMatch 410 ^/hello-world(/.*)?$
+RedirectMatch 410 ^/sample-page(/.*)?$
+RedirectMatch 410 ^/cookie-policy-eu(/.*)?$
+RedirectMatch 410 ^/terms-and-conditions(/.*)?$
+RedirectMatch 410 ^/privacy/?$
+
+# Custom 404
+ErrorDocument 404 /404.html
+ErrorDocument 410 /404.html
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 6 months"
+    ExpiresByType image/png "access plus 6 months"
+    ExpiresByType image/webp "access plus 6 months"
+</IfModule>
